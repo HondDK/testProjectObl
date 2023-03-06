@@ -1,26 +1,12 @@
 import React from "react";
+import NavButton from "../UI/NavButton";
 
-const Nav = () => {
+const Nav = ({ props }) => {
 	return (
 		<nav>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
-			<div className="question_number_btn">
-				<span>1</span>
-			</div>
+			{props.map((date) => (
+				<NavButton>{date.id}</NavButton>
+			))}
 		</nav>
 	);
 };
