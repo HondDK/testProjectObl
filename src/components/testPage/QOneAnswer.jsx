@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import QOneAnswerButton from "../UI/QOneAnswerButton";
 
 const QOneAnswer = () => {
 	const [qOneAnswer, setQOneAnswer] = useState([]);
@@ -25,18 +26,9 @@ const QOneAnswer = () => {
 				<section className="q_one_answer">
 					<p>{data.title}</p>
 					<div className="answer">
-						<div>
-							<span>{123}</span>
-						</div>
-						<div>
-							<span>{123}</span>
-						</div>
-						<div>
-							<span>{123}</span>
-						</div>
-						<div>
-							<span>{13}</span>
-						</div>
+						{qOneAnswer.map((data) => (
+							<QOneAnswerButton>{data.id}</QOneAnswerButton>
+						))}
 					</div>
 				</section>
 			))}
