@@ -1,36 +1,23 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import QOneAnswerButton from "../UI/QOneAnswerButton";
 import Intro from "./Intro";
+import useFetchData from "../../hooks/useFetchData";
 const QOneAnswer = () => {
-	const [qOneAnswer, setQOneAnswer] = useState([]);
-
-	useEffect(() => {
-		fetchQOneAnswer();
-	}, []);
-	async function fetchQOneAnswer() {
-		try {
-			const response = await axios.get(
-				"https://63305deb591935f3c88e9057.mockapi.io/test_one_true_answer"
-			);
-			setQOneAnswer(response.data);
-			console.log(response.data);
-		} catch (e) {
-			alert(e);
-		}
-	}
+	const data = useFetchData(
+		"https://63305deb591935f3c88e9057.mockapi.io/test_one_true_answer"
+	);
 
 	return (
 		<>
 			<article>
 				<Intro></Intro>
 			</article>
-			{qOneAnswer.map((data) => (
+			{data.map((item) => (
 				<section className="q_one_answer">
-					<p>{data.title}</p>
+					<p>{item.title}</p>
 					<div className="answer">
-						{qOneAnswer.map((data) => (
-							<QOneAnswerButton>{data.id}</QOneAnswerButton>
+						{data.map((item) => (
+							<QOneAnswerButton>{item.id}</QOneAnswerButton>
 						))}
 					</div>
 				</section>
