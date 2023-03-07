@@ -3,6 +3,7 @@ import axios from "axios";
 import Nav from "../components/testPage/Nav";
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
+import QTable from "../components/testPage/QTable";
 
 const TestPage = () => {
 	const [typeTest, setTypeTest] = useState([]);
@@ -29,7 +30,8 @@ const TestPage = () => {
 				<Timer />
 			</header>
 			<Nav props={typeTest} />
-			<main>  
+			<main>
+				<QTable></QTable>
 				<QOneAnswer></QOneAnswer>
 			</main>
 		</>
