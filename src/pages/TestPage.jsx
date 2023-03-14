@@ -20,7 +20,7 @@ const TestPage = () => {
 			</header>
 			<Nav props={data} />
 			<main>
-				<QTable></QTable>
+				{/* <QTable></QTable> */}
 				<QInputAnswer></QInputAnswer>
 				{/* <QOneAnswer></QOneAnswer> */}
 			</main>
