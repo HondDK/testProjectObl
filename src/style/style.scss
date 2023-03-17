@@ -80,6 +80,10 @@ main {
 		.main_text {
 			width: 740px;
 		}
+		h1 {
+			@extend %font-bold;
+			text-align: center;
+		}
 	}
 
 	.q_one_answer {
@@ -135,6 +139,33 @@ main {
 			height: 25px;
 			color: white;
 		}
+	}
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	width: 60%;
+	label {
+		@extend %font-bold;
+		margin-bottom: 5px;
+	}
+	input {
+		@extend %font-base;
+		text-align: center;
+		background: rgba(89, 173, 103, 0.5);
+		border-radius: 8px;
+		height: 25px;
+		color: white;
+	}
+	.submit {
+		@extend %font-bold;
+		margin-top: 15px;
+		font-size: 20px;
+		height: 45px;
+		background: rgba(89, 173, 103, 1);
+		cursor: pointer;
 	}
 }
 

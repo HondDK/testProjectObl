@@ -20,9 +20,11 @@ const FormPage = () => {
 						<input id="POST-school" type="text" name="school"></input>
 						<label for="POST-group">Класс</label>
 						<input id="POST-group" type="text" name="group"></input>
-						<input type="submit" value="Save">
-							Продолжить
-						</input>
+						<input
+							className="submit"
+							type="submit"
+							value="Начать тестирование"
+						></input>
 					</form>
 				</article>
 			</main>
