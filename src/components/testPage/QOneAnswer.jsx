@@ -15,7 +15,7 @@ const QOneAnswer = () => {
 			{data.map((item) => (
 				<section className="q_one_answer">
 					<p>{item.title}</p>
-					<div className="answer">
+					<div className="q_one_answer_btn">
 						{data.map((item) => (
 							<QOneAnswerButton>{item.id}</QOneAnswerButton>
 						))}

@@ -104,6 +104,7 @@ main {
 				width: 178px;
 				height: 50px;
 				background: rgba(89, 173, 103, 0.8);
+				cursor: pointer;
 				border-radius: 15px;
 				//Текст
 				span {
@@ -115,6 +116,12 @@ main {
 					line-height: 28px;
 				}
 			}
+			:hover {
+				-webkit-transform: scale(1.02);
+				-ms-ransform: scale(1.02);
+				transform: scale(1.02);
+				transition: transform 0.2s ease;
+			}
 		}
 	}
 }
@@ -122,7 +129,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	@extend %font-bold;
-	.q_one_answer_block {
+	.q_input_answer_block {
 		@extend %font-base;
 		margin-top: 15px;
 		display: flex;
@@ -132,12 +139,12 @@ main {
 			margin-right: 15px;
 		}
 		input {
-			@extend %font-base;
+			@extend %font-bold;
 			text-align: center;
-			background: rgba(89, 173, 103, 0.8);
+			background: rgba(89, 173, 103, 0.5);
 			border-radius: 8px;
 			height: 25px;
-			color: white;
+			color: black;
 		}
 	}
 }
@@ -152,12 +159,13 @@ form {
 		margin-bottom: 5px;
 	}
 	input {
-		@extend %font-base;
+		@extend %font-bold;
 		text-align: center;
 		background: rgba(89, 173, 103, 0.5);
 		border-radius: 8px;
-		height: 25px;
-		color: white;
+		height: 35px;
+		color: rgb(0, 0, 0);
+		font-size: 15px;
 	}
 	.submit {
 		@extend %font-bold;
@@ -166,6 +174,7 @@ form {
 		height: 45px;
 		background: rgba(89, 173, 103, 1);
 		cursor: pointer;
+		color: black;
 	}
 }
 

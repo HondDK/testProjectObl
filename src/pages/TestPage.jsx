@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import Nav from "../components/testPage/Nav";
 import Timer from "../components/testPage/Timer";
-//import QOneAnswer from "../components/testPage/QOneAnswer";
+import QOneAnswer from "../components/testPage/QOneAnswer";
 import QTable from "../components/testPage/QTable";
 import useFetchData from "../hooks/useFetchData";
 import QInputAnswer from "../components/testPage/QInputAnswer";
@@ -20,9 +20,9 @@ const TestPage = () => {
 			</header>
 			<Nav props={data} />
 			<main>
-				{/* <QTable></QTable> */}
+				<QTable></QTable>
 				<QInputAnswer></QInputAnswer>
-				{/* <QOneAnswer></QOneAnswer> */}
+				<QOneAnswer></QOneAnswer>
 			</main>
 		</>
 	);
