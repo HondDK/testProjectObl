@@ -6,8 +6,12 @@ function useFetchData(url) {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const result = await axios.get(url);
-			setData(result.data);
+			try {
+				const result = await axios.get(url);
+				setData(result.data);
+			} catch (error) {
+				console.error(error);
+			}
 		};
 		fetchData();
 	}, [url]);

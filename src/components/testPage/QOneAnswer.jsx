@@ -4,24 +4,28 @@ import Intro from "./Intro";
 import useFetchData from "../../hooks/useFetchData";
 const QOneAnswer = () => {
 	const data = useFetchData(
-		"https://63305deb591935f3c88e9057.mockapi.io/test_one_true_answer"
+		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32/"
 	);
 
 	return (
 		<>
 			<article>
-				<Intro></Intro>
+				{/* <Intro></Intro> */}
 			</article>
-			{data.map((item) => (
-				<section className="q_one_answer">
-					<p>{item.title}</p>
-					<div className="q_one_answer_btn">
-						{data.map((item) => (
-							<QOneAnswerButton>{item.id}</QOneAnswerButton>
-						))}
-					</div>
-				</section>
-			))}
+			{data &&
+				data.ordinary_questions &&
+				data.ordinary_questions.map((item) => (
+					<section className="q_one_answer" key={item.uuid}>
+						<p>{item.header}</p>
+						<div className="q_one_answer_btn">
+							{item.answers.map((answer) => (
+								<QOneAnswerButton key={answer.uuid}>
+									{answer.text}
+								</QOneAnswerButton>
+							))}
+						</div>
+					</section>
+				))}
 		</>
 	);
 };

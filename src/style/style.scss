@@ -59,6 +59,12 @@ nav {
 			color: #ffffff;
 		}
 	}
+	:hover {
+		-webkit-transform: scale(1.02);
+		-ms-ransform: scale(1.02);
+		transform: scale(1.02);
+		transition: transform 0.2s ease;
+	}
 }
 main {
 	width: 1440px;
@@ -148,6 +154,36 @@ main {
 		}
 	}
 }
+.card_comparison_questions {
+	display: flex;
+
+	div {
+		display: flex;
+		align-items: center;
+		text-align: center;
+		margin-right: 15px;
+		width: 178px;
+		height: 178px;
+		background: rgba(89, 173, 103, 0.8);
+		cursor: pointer;
+		border-radius: 15px;
+		//Текст
+		span {
+			@extend %font-base;
+			margin: 0 auto;
+			color: white;
+			font-weight: 400;
+			font-size: 24px;
+			line-height: 28px;
+		}
+	}
+	:hover {
+		-webkit-transform: scale(1.02);
+		-ms-ransform: scale(1.02);
+		transform: scale(1.02);
+		transition: transform 0.2s ease;
+	}
+}
 
 form {
 	display: flex;
@@ -178,7 +214,6 @@ form {
 	}
 }
 
-/* DivTable.com */
 .divTable {
 	display: table;
 	width: 100%;
