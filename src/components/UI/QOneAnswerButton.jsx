@@ -2,8 +2,8 @@ import React from "react";
 
 const QOneAnswerButton = (props) => {
 	return (
-		<div>
-			<span>{props.children}</span>
+		<div style={props.style} onClick={props.onClick}>
+			{props.children}
 		</div>
 	);
 };

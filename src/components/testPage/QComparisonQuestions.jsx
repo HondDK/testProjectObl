@@ -7,12 +7,6 @@ const QComparisonQuestions = () => {
 		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32/"
 	);
 
-	const [selectedAnswer, setSelectedAnswer] = useState(null);
-
-	const handleAnswerClick = (answer) => {
-		setSelectedAnswer(answer);
-	};
-
 	return (
 		<>
 			{data &&
@@ -22,16 +16,7 @@ const QComparisonQuestions = () => {
 						<p>{item.header}</p>
 
 						{item.option_answers.map((answer) => (
-							<div
-								className="card_comparison_questions"
-								onClick={() => handleAnswerClick(answer)}
-								style={{
-									backgroundColor:
-										selectedAnswer && selectedAnswer.uuid === answer.uuid
-											? "red"
-											: "white",
-								}}
-							>
+							<div className="card_comparison_questions">
 								<CardComparisonQuestions key={answer.uuid}>
 									{answer.text}
 								</CardComparisonQuestions>

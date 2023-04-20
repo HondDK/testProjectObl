@@ -21,10 +21,10 @@ const TestPage = () => {
 			</header>
 			{/* <Nav props={data} /> */}
 			<main>
-				<QComparisonQuestions></QComparisonQuestions>
+				{/* <QComparisonQuestions></QComparisonQuestions> */}
 				{/* <QTable></QTable> */}
 				{/* <QInputAnswer></QInputAnswer> */}
-				{/* <QOneAnswer></QOneAnswer> */}
+				<QOneAnswer></QOneAnswer>
 			</main>
 		</>
 	);
