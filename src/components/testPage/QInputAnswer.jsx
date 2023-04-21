@@ -11,7 +11,7 @@ const QInputAnswer = () => {
 				<section className="q_input_answer">
 					<p>{item.title}</p>
 					<div className="q_input_answer_block">
-						<span>{item.title}</span> <input /> <span>{item.title}</span>
+						<input />
 					</div>
 				</section>
 			))}

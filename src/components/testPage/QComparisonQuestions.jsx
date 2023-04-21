@@ -14,14 +14,13 @@ const QComparisonQuestions = () => {
 				data.comparison_questions.map((item) => (
 					<section className="q_one_answer" key={item.uuid}>
 						<p>{item.header}</p>
-
-						{item.option_answers.map((answer) => (
-							<div className="card_comparison_questions">
+						<div className="card_comparison_questions">
+							{item.option_answers.map((answer) => (
 								<CardComparisonQuestions key={answer.uuid}>
 									{answer.text}
 								</CardComparisonQuestions>
-							</div>
-						))}
+							))}
+						</div>
 					</section>
 				))}
 		</>

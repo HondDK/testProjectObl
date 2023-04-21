@@ -12,11 +12,13 @@ const TestPage = () => {
 	const data = useFetchData(
 		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32"
 	);
+
 	const [timeToPass, setTimeToPass] = useState({
 		hours_to_pass: 1,
 		minutes_to_pass: 0,
 		seconds_to_pass: 0,
 	});
+
 	useEffect(() => {
 		setTimeToPass({
 			hours_to_pass: data.hours_to_pass,
@@ -24,6 +26,7 @@ const TestPage = () => {
 			seconds_to_pass: data.seconds_to_pass,
 		});
 	}, []);
+
 	return (
 		<>
 			<header>
@@ -37,7 +40,7 @@ const TestPage = () => {
 			{/* <Nav props={data} /> */}
 			<main>
 				<QComparisonQuestions></QComparisonQuestions>
-				<QTable></QTable>
+				{/* <QTable></QTable> */}
 
 				<QInputAnswer></QInputAnswer>
 				<QOneAnswer></QOneAnswer>
