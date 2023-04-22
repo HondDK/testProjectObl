@@ -9,6 +9,8 @@ const QInputAnswer = () => {
 
 	const [answerId, setAnswerId] = useState();
 	const [answer, setAnswer] = useState("");
+	const [student_examId, setStudent_examId] = useState("");
+	const [uuid, setUuid] = useState("");
 
 	useEffect(() => {
 		if (data) {
@@ -21,14 +23,19 @@ const QInputAnswer = () => {
 					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
 					article
 				)
-				.then((response) => console.log(response));
+				.then((response) => {
+					setUuid(response.data.uuid);
+					setStudent_examId(response.data.exam);
+					console.log(response.data.uuid);
+					console.log(response.data.exam);
+				});
 		}
 	}, [data]);
 
 	function submit() {
 		const article = {
-			student_exam: "0aced5c5-7d3f-48bd-951b-eb80c1101595",
-			question: "d3c12820-8487-4927-9aa9-f571b72b65aa",
+			student_exam: uuid,
+			question: student_examId,
 			text: answer,
 		};
 		axios
