@@ -6,8 +6,24 @@ const QInputAnswer = () => {
 	const data = useFetchData(
 		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32/"
 	);
+
 	const [answerId, setAnswerId] = useState();
 	const [answer, setAnswer] = useState("");
+
+	useEffect(() => {
+		if (data) {
+			const article = {
+				user_name: "artem",
+				exam: data.uuid,
+			};
+			axios
+				.post(
+					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
+					article
+				)
+				.then((response) => console.log(response));
+		}
+	}, [data]);
 
 	function submit() {
 		const article = {
