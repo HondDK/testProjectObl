@@ -175,6 +175,11 @@ main {
 			transform: scale(1.02);
 			transition: transform 0.2s ease;
 		}
+		[disabled] {
+			background-color: grey;
+			color: white;
+			cursor: not-allowed;
+		}
 	}
 }
 .card_comparison_questions {
