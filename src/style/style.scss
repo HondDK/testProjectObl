@@ -102,7 +102,7 @@ main {
 		.q_one_answer_btn {
 			display: flex;
 
-			div {
+			button {
 				display: flex;
 				align-items: center;
 				text-align: center;
@@ -127,6 +127,9 @@ main {
 				-ms-ransform: scale(1.02);
 				transform: scale(1.02);
 				transition: transform 0.2s ease;
+			}
+			:disabled {
+				background: rgba(56, 56, 56, 0.8);
 			}
 		}
 	}

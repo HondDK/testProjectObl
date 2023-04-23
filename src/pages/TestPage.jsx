@@ -68,7 +68,7 @@ const TestPage = () => {
 				{/* <QTable></QTable> */}
 
 				<QInputAnswer uuid={uuid}></QInputAnswer>
-				<QOneAnswer></QOneAnswer>
+				<QOneAnswer uuid={uuid}></QOneAnswer>
 			</main>
 		</>
 	);
