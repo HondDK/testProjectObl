@@ -19,17 +19,20 @@ const QOneAnswer = (props) => {
 			question: question.uuid,
 			text: text,
 		};
-		axios
-			.post(
-				"http://165.232.118.51:8000/edu_exams/exams/ordinary_question_user_answers/",
-				article
-			)
-			.then((response) => setAnswerId(response.data.id));
+		try {
+			axios
+				.post(
+					"http://165.232.118.51:8000/edu_exams/exams/ordinary_question_user_answers/",
+					article
+				)
+				.then((response) => setAnswerId(response.data.id));
+			const newButtonDisabled = [...buttonDisabled];
+			newButtonDisabled[index] = true;
+			setButtonDisabled(newButtonDisabled);
+		} catch (err) {
+			console.log(article);
+		}
 		console.log(article);
-
-		const newButtonDisabled = [...buttonDisabled];
-		newButtonDisabled[index] = true;
-		setButtonDisabled(newButtonDisabled);
 	}
 
 	return (

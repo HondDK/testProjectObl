@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useFetchData from "../../hooks/useFetchData";
-import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const QInputAnswer = (props) => {
 	const [answerId, setAnswerId] = useState();
@@ -23,12 +22,16 @@ const QInputAnswer = (props) => {
 				"http://165.232.118.51:8000/edu_exams/exams/original_question_user_answers/",
 				article
 			)
-			.then((response) => setAnswerId(response.data.id));
+			.then((response) => {
+				setAnswerId(response.data.id);
+				const newButtonDisabled = [...buttonDisabled];
+				newButtonDisabled[index] = true;
+				setButtonDisabled(newButtonDisabled);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 		console.log(article);
-
-		const newButtonDisabled = [...buttonDisabled];
-		newButtonDisabled[index] = true;
-		setButtonDisabled(newButtonDisabled);
 	}
 
 	return (
