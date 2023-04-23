@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import axios from "axios";
 import Nav from "../components/testPage/Nav";
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
@@ -27,6 +27,31 @@ const TestPage = () => {
 		});
 	}, []);
 
+	const [isMounted, setIsMounted] = useState(false);
+	const [student_examId, setStudent_examId] = useState("");
+	const [uuid, setUuid] = useState("");
+	useEffect(() => {
+		if (isMounted && data) {
+			const article = {
+				user_name: "test",
+				exam: data.uuid,
+			};
+			axios
+				.post(
+					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
+					article
+				)
+				.then((response) => {
+					setUuid(response.data.uuid);
+					setStudent_examId(response.data.exam);
+					console.log(response.data.uuid);
+					console.log(response.data.exam);
+				});
+		} else {
+			setIsMounted(true);
+		}
+	}, [data]);
+
 	return (
 		<>
 			<header>
@@ -42,7 +67,7 @@ const TestPage = () => {
 				<QComparisonQuestions></QComparisonQuestions>
 				{/* <QTable></QTable> */}
 
-				<QInputAnswer></QInputAnswer>
+				<QInputAnswer uuid={uuid}></QInputAnswer>
 				<QOneAnswer></QOneAnswer>
 			</main>
 		</>
