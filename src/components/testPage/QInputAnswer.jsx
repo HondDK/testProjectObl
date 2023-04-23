@@ -12,10 +12,10 @@ const QInputAnswer = (props) => {
 	);
 
 	const [buttonDisabled, setButtonDisabled] = useState([]);
-	function submit(index) {
+	function submit(index, question) {
 		const article = {
 			student_exam: props.uuid,
-			question: "f05e5d11-35bc-4a38-8c8f-4eba2f3a1f96",
+			question: question.uuid,
 			text: answer,
 		};
 		axios
@@ -25,6 +25,7 @@ const QInputAnswer = (props) => {
 			)
 			.then((response) => setAnswerId(response.data.id));
 		console.log(article);
+
 		const newButtonDisabled = [...buttonDisabled];
 		newButtonDisabled[index] = true;
 		setButtonDisabled(newButtonDisabled);
@@ -42,7 +43,7 @@ const QInputAnswer = (props) => {
 							<input onChange={(e) => setAnswer(e.target.value)} />
 							<button
 								disabled={buttonDisabled[index]}
-								onClick={() => submit(index)}
+								onClick={() => submit(index, item)}
 							>
 								Готово
 							</button>
