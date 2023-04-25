@@ -4,18 +4,19 @@ import FormPage from "./pages/FormPage";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TestPage from "./pages/TestPage";
+import MainPage from "./pages/MainPage";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
-		element: <App />,
+		element: <MainPage />,
 	},
 	{
 		path: "/form",
 		element: <FormPage />,
 	},
 	{
-		path: "/testpage",
+		path: "/testpage/:uuid",
 		element: <TestPage />,
 	},
 ]);

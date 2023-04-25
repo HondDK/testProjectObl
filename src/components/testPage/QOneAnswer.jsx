@@ -3,10 +3,12 @@ import QOneAnswerButton from "../UI/QOneAnswerButton";
 import Intro from "./Intro";
 import useFetchData from "../../hooks/useFetchData";
 import axios from "axios";
-
+import { useParams } from "react-router-dom";
 const QOneAnswer = (props) => {
+	const { uuid } = useParams(); // retrieve the UUID from the URL
+
 	const data = useFetchData(
-		"http://165.232.118.51:8000/edu_exams/exams/exams/e6dbf7bc-95ec-4039-b450-99f898f88d9a/"
+		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
 	const [answerId, setAnswerId] = useState();

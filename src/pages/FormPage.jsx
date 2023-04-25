@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-
+import useFetchData from "../hooks/useFetchData";
 const FormPage = () => {
-	const [user, setUser] = useState("");
 
+	
+
+	const [user, setUser] = useState("");
 	function handleChange(e) {
 		const name = e.target.value;
 		setUser(name);

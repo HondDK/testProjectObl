@@ -7,10 +7,13 @@ import QTable from "../components/testPage/QTable";
 import useFetchData from "../hooks/useFetchData";
 import QInputAnswer from "../components/testPage/QInputAnswer";
 import QComparisonQuestions from "../components/testPage/QComparisonQuestions";
+import { useParams } from "react-router-dom";
 
 const TestPage = () => {
+	const { uuid } = useParams(); // retrieve the UUID from the URL
+
 	const data = useFetchData(
-		"http://165.232.118.51:8000/edu_exams/exams/exams/e6dbf7bc-95ec-4039-b450-99f898f88d9a/"
+		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
 	const [timeToPass, setTimeToPass] = useState({
@@ -29,7 +32,7 @@ const TestPage = () => {
 
 	const [isMounted, setIsMounted] = useState(false);
 	const [student_examId, setStudent_examId] = useState("");
-	const [uuid, setUuid] = useState("");
+	const [id, setId] = useState("");
 	useEffect(() => {
 		if (isMounted && data) {
 			const article = {
@@ -42,7 +45,7 @@ const TestPage = () => {
 					article
 				)
 				.then((response) => {
-					setUuid(response.data.uuid);
+					setId(response.data.uuid);
 					setStudent_examId(response.data.exam);
 					console.log(response.data.uuid);
 					console.log(response.data.exam);
@@ -68,6 +71,7 @@ const TestPage = () => {
 				{/* <QTable></QTable> */}
 				<QOneAnswer uuid={uuid}></QOneAnswer>
 				<QInputAnswer uuid={uuid}></QInputAnswer>
+				<button></button>
 			</main>
 		</>
 	);
