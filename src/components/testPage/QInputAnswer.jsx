@@ -14,8 +14,8 @@ const QInputAnswer = (props) => {
 	const [buttonDisabled, setButtonDisabled] = useState([]);
 	function submit(index, question) {
 		const article = {
-			student_exam: "props.uuid",
-			question: "question.uuid",
+			student_exam: props.exam,
+			question: question.uuid,
 			text: answer,
 		};
 		axios
