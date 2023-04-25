@@ -62,6 +62,7 @@ const QOneAnswer = (props) => {
 								</button>
 							))}
 						</div>
+						<hr />
 					</section>
 				))}
 		</>
