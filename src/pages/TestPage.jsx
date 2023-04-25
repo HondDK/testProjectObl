@@ -10,7 +10,7 @@ import QComparisonQuestions from "../components/testPage/QComparisonQuestions";
 
 const TestPage = () => {
 	const data = useFetchData(
-		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32"
+		"http://165.232.118.51:8000/edu_exams/exams/exams/e6dbf7bc-95ec-4039-b450-99f898f88d9a/"
 	);
 
 	const [timeToPass, setTimeToPass] = useState({
@@ -64,11 +64,10 @@ const TestPage = () => {
 			</header>
 			{/* <Nav props={data} /> */}
 			<main>
-				<QComparisonQuestions></QComparisonQuestions>
+				{/* <QComparisonQuestions></QComparisonQuestions> */}
 				{/* <QTable></QTable> */}
-
-				<QInputAnswer uuid={uuid}></QInputAnswer>
 				<QOneAnswer uuid={uuid}></QOneAnswer>
+				<QInputAnswer uuid={uuid}></QInputAnswer>
 			</main>
 		</>
 	);
