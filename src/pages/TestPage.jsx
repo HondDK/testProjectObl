@@ -28,12 +28,26 @@ const TestPage = () => {
 			minutes_to_pass: data.minutes_to_pass,
 			seconds_to_pass: data.seconds_to_pass,
 		});
+
+		const article = {
+			exam: uuid,
+			user_name: sessionStorage.getItem("user"),
+		};
+
+		axios
+			.post(
+				"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
+				article
+			)
+			.then((response) => setStudent_examId(response.data.id))
+			.catch((err) => console.log(err));
+		console.log(student_examId);
 	}, []);
 
 	const [isMounted, setIsMounted] = useState(false);
 	const [student_examId, setStudent_examId] = useState("");
 	const [id, setId] = useState("");
-	
+
 	useEffect(() => {
 		if (isMounted && data) {
 			const article = {

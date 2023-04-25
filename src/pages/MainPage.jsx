@@ -21,7 +21,7 @@ const MainPage = () => {
 						data.results &&
 						data.results.map((item) => (
 							<div key={item.uuid} onClick={submit}>
-								<Link to={`/testpage/${item.uuid}`}>
+								<Link to={`/form/${item.uuid}`}>
 									<span>{item.name}</span>
 									<p>
 										Предмет: <span>{item.subject}</span>

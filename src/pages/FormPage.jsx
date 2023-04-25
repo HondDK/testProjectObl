@@ -1,16 +1,19 @@
-import React, { useState } from "react";
-import useFetchData from "../hooks/useFetchData";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+
 const FormPage = () => {
+	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const [user, setUser] = useState("");
 	function handleChange(e) {
 		const name = e.target.value;
 		setUser(name);
+		sessionStorage.setItem("user", user);
+		console.log(user);
 	}
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		sessionStorage.setItem("user", user);
 		console.log(user);
 	}
 
@@ -32,7 +35,7 @@ const FormPage = () => {
 							value={user}
 							onChange={handleChange}
 						></input>
-						<Link to={`/mainpage`}>
+						<Link to={`/testpage/${uuid}`}>
 							<input
 								className="submit"
 								type="submit"
