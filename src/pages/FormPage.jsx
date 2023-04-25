@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 const FormPage = () => {
+	const [user, setUser] = useState("");
+
+	function handleChange(e) {
+		const name = e.target.value;
+		setUser(name);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		sessionStorage.setItem("user", user);
+		console.log(user);
+	}
+
 	return (
 		<>
 			<header>
-				<h1>Тестирование по математике</h1>
+				<h1>Тестирование </h1>
 			</header>
 			<main>
 				<article>
 					<h1>Введите свои данные</h1>
-					<form>
-						<label for="POST-name">Имя</label>
-						<input id="POST-name" type="text" name="name"></input>
-						<label for="POST-surname">Фамилия</label>
-						<input id="POST-surname" type="text" name="surname"></input>
-						<label for="POST-patronymic">Отчество</label>
-						<input id="POST-patronymic" type="text" name="patronymic"></input>
-						<label for="POST-school">Школа</label>
-						<input id="POST-school" type="text" name="school"></input>
-						<label for="POST-group">Класс</label>
-						<input id="POST-group" type="text" name="group"></input>
+					<form onSubmit={handleSubmit}>
+						<label htmlFor="POST-name">Введите фамилию, имя и отчество</label>
+						<input
+							id="POST-name"
+							type="text"
+							name="name"
+							value={user}
+							onChange={handleChange}
+						></input>
 						<input
 							className="submit"
 							type="submit"

@@ -33,7 +33,7 @@ const TestPage = () => {
 	useEffect(() => {
 		if (isMounted && data) {
 			const article = {
-				user_name: "test",
+				user_name: document.getElementById("user"),
 				exam: data.uuid,
 			};
 			axios
