@@ -5,6 +5,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TestPage from "./pages/TestPage";
 import MainPage from "./pages/MainPage";
+import ResultsTest from "./pages/ResultsTest";
 
 const router = createBrowserRouter([
 	{
@@ -17,8 +18,12 @@ const router = createBrowserRouter([
 		element: <FormPage />,
 	},
 	{
-		path: "/testpage/:uuid",
+		path: "/test_page/:uuid",
 		element: <TestPage />,
+	},
+	{
+		path: "/results_test/:uuid",
+		element: <ResultsTest />,
 	},
 ]);
 

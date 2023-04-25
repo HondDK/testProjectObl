@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
@@ -35,7 +34,7 @@ const FormPage = () => {
 							value={user}
 							onChange={handleChange}
 						></input>
-						<Link to={`/testpage/${uuid}`}>
+						<Link to={`/test_page/${uuid}`}>
 							<input
 								className="submit"
 								type="submit"

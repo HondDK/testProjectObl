@@ -6,12 +6,6 @@ const MainPage = () => {
 		"http://165.232.118.51:8000/edu_exams/exams/exams/"
 	);
 
-	const [testUrl, setTestUrl] = useState("");
-
-	function submit() {
-		setTestUrl();
-	}
-
 	return (
 		<div>
 			<h1>Все созданные тесты {data.count}</h1>
@@ -20,7 +14,7 @@ const MainPage = () => {
 					{data &&
 						data.results &&
 						data.results.map((item) => (
-							<div key={item.uuid} onClick={submit}>
+							<div key={item.uuid}>
 								<Link to={`/form/${item.uuid}`}>
 									<span>{item.name}</span>
 									<p>
