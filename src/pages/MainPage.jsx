@@ -12,7 +12,7 @@ const MainPage = () => {
 					{data &&
 						data.results &&
 						data.results.map((item) => (
-							<div>
+							<div key={item.uuid}>
 								<span>{item.name}</span>
 								<p>
 									Предмет: <span>{item.subject}</span>

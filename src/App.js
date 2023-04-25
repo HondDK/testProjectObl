@@ -8,8 +8,8 @@ function App() {
 	return (
 		<div className="App">
 			{/* <TestPage></TestPage> */}
-			<FormPage></FormPage>
-			{/* <MainPage></MainPage> */}
+			{/* <FormPage></FormPage> */}
+			<MainPage></MainPage>
 		</div>
 	);
 }
