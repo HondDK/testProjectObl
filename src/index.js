@@ -9,6 +9,10 @@ import MainPage from "./pages/MainPage";
 const router = createBrowserRouter([
 	{
 		path: "/",
+		element: <FormPage />,
+	},
+	{
+		path: "/mainpage",
 		element: <MainPage />,
 	},
 	{

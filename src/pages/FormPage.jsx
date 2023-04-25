@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import useFetchData from "../hooks/useFetchData";
+import { Link } from "react-router-dom";
 const FormPage = () => {
-
-	
-
 	const [user, setUser] = useState("");
 	function handleChange(e) {
 		const name = e.target.value;
@@ -24,6 +22,7 @@ const FormPage = () => {
 			<main>
 				<article>
 					<h1>Введите свои данные</h1>
+
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="POST-name">Введите фамилию, имя и отчество</label>
 						<input
@@ -33,11 +32,13 @@ const FormPage = () => {
 							value={user}
 							onChange={handleChange}
 						></input>
-						<input
-							className="submit"
-							type="submit"
-							value="Начать тестирование"
-						></input>
+						<Link to={`/mainpage`}>
+							<input
+								className="submit"
+								type="submit"
+								value="Начать тестирование"
+							></input>
+						</Link>
 					</form>
 				</article>
 			</main>

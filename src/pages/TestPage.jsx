@@ -33,10 +33,11 @@ const TestPage = () => {
 	const [isMounted, setIsMounted] = useState(false);
 	const [student_examId, setStudent_examId] = useState("");
 	const [id, setId] = useState("");
+	
 	useEffect(() => {
 		if (isMounted && data) {
 			const article = {
-				user_name: document.getElementById("user"),
+				user_name: sessionStorage.getItem("user"),
 				exam: data.uuid,
 			};
 			axios
@@ -71,7 +72,7 @@ const TestPage = () => {
 				{/* <QTable></QTable> */}
 				<QOneAnswer uuid={uuid}></QOneAnswer>
 				<QInputAnswer uuid={uuid}></QInputAnswer>
-				<button></button>
+				<button className="CloseTest">Завершить тест</button>
 			</main>
 		</>
 	);

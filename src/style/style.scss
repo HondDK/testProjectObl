@@ -91,6 +91,20 @@ main {
 			text-align: center;
 		}
 	}
+	.CloseTest {
+		@extend %font-bold;
+		width: 300px;
+		height: 70px;
+		margin-top: 50px;
+		margin-left: auto;
+		background: rgba(218, 51, 59, 0.8);
+		cursor: pointer;
+		padding: 8px;
+		border-radius: 15px;
+		border-style: none;
+		font-size: 20px;
+		color: white;
+	}
 
 	.q_one_answer {
 		p {
