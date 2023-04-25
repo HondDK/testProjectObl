@@ -6,7 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 const QOneAnswer = (props) => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
-	const { exam } = useParams();
+
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
@@ -17,7 +17,7 @@ const QOneAnswer = (props) => {
 	const [buttonDisabled, setButtonDisabled] = useState([]);
 	function submit(index, question, text) {
 		const article = {
-			student_exam: exam,
+			student_exam: props.exam,
 			question: question.uuid,
 			text: text,
 		};

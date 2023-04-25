@@ -28,26 +28,12 @@ const TestPage = () => {
 			minutes_to_pass: data.minutes_to_pass,
 			seconds_to_pass: data.seconds_to_pass,
 		});
-
-		const article = {
-			exam: uuid,
-			user_name: sessionStorage.getItem("user"),
-		};
-
-		axios
-			.post(
-				"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
-				article
-			)
-			.then((response) => setStudent_examId(response.data.id))
-			.catch((err) => console.log(err));
-		console.log(student_examId);
 	}, []);
 
 	const [isMounted, setIsMounted] = useState(false);
-	const [student_examId, setStudent_examId] = useState("");
 	const [id, setId] = useState("");
 
+	const [student_examId, setStudent_examId] = useState({});
 	useEffect(() => {
 		if (isMounted && data) {
 			const article = {
@@ -61,7 +47,7 @@ const TestPage = () => {
 				)
 				.then((response) => {
 					setId(response.data.uuid);
-					setStudent_examId(response.data.exam);
+					setStudent_examId(response.data);
 					console.log(response.data.uuid);
 					console.log(response.data.exam);
 				});
@@ -84,8 +70,8 @@ const TestPage = () => {
 			<main>
 				<QComparisonQuestions></QComparisonQuestions>
 				{/* <QTable></QTable> */}
-				<QOneAnswer uuid={uuid}></QOneAnswer>
-				<QInputAnswer uuid={uuid}></QInputAnswer>
+				<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
+				<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
 				<button className="CloseTest">Завершить тест</button>
 			</main>
 		</>
