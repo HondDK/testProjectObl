@@ -109,20 +109,22 @@ main {
 	}
 
 	.q_one_answer {
+		background-color: #fff;
+		border: 0.0625rem solid #dadce0;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		padding: 0 25px 25px 25px;
+		box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+			0 2px 6px 2px rgba(60, 64, 67, 0.15);
+		margin-top: 20px;
+
 		p {
 			@extend %font-base;
 			font-weight: 400;
 			font-size: 24px;
 			line-height: 28px;
 		}
-		hr {
-			height: 2px;
-			border: none;
-			background-color: black;
-			color: black;
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
+
 		.q_one_answer_btn {
 			display: flex;
 
@@ -157,15 +159,19 @@ main {
 			}
 		}
 	}
-	.QOneAnswerDescription {
-		display: flex;
-		width: 80%;
-	}
 }
 
 .q_input_answer {
 	display: flex;
 	flex-direction: column;
+	background-color: #fff;
+	border: 0.0625rem solid #dadce0;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	padding: 0 25px 25px 25px;
+	box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+		0 2px 6px 2px rgba(60, 64, 67, 0.15);
+	margin-top: 20px;
 	@extend %font-bold;
 	.q_input_answer_block {
 		@extend %font-base;
