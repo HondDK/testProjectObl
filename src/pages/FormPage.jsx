@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
@@ -33,11 +33,8 @@ const FormPage = () => {
 			</header>
 			<main>
 				<article>
-					{isDisabled ? (
-						<h1>Введите свои данные</h1>
-					) : (
-						<h1>Проверьте правильность ФИО перед началом теста</h1>
-					)}
+					<h1>Заполните поле перед началом тестирования</h1>
+
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="POST-name">Введите фамилию, имя и отчество</label>
 						<input
@@ -47,14 +44,12 @@ const FormPage = () => {
 							value={user}
 							onChange={handleChange}
 						></input>
-						<Link to={`/test_page/${uuid}`}>
-							<input
-								className="submit"
-								type="submit"
-								value={value}
-								disabled={isDisabled}
-							></input>
-						</Link>
+
+						<NavLink to={isDisabled ? "#" : `/test_page/${uuid}`}>
+							<button className="submit" disabled={isDisabled}>
+								{isDisabled ? "Введите данные" : "Начать тестирование"}
+							</button>
+						</NavLink>
 					</form>
 				</article>
 			</main>
