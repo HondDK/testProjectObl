@@ -7,6 +7,9 @@ import useFetchData from "../hooks/useFetchData";
 import QInputAnswer from "../components/testPage/QInputAnswer";
 import QComparisonQuestions from "../components/testPage/QComparisonQuestions";
 import { Link, useParams } from "react-router-dom";
+import HeaderLoader from "../components/UI/loaders/HeaderLoader";
+import MainLoader from "../components/UI/loaders/MainLoader";
+import { useSpring, animated } from "react-spring";
 
 const TestPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
@@ -16,7 +19,7 @@ const TestPage = () => {
 	);
 
 	const [hoursToPass, setHoursToPass] = useState(0);
-	const [minutesToPass, setMinutesToPass] = useState(30);
+	const [minutesToPass, setMinutesToPass] = useState(0);
 
 	useEffect(() => {
 		if (data) {
@@ -25,16 +28,18 @@ const TestPage = () => {
 		}
 	}, [data]);
 
-	const [isMounted, setIsMounted] = useState(false);
 	const [id, setId] = useState("");
 	const [student_examId, setStudent_examId] = useState({});
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
+		let isMounted = true;
 		if (isMounted && data) {
 			const article = {
 				user_name: sessionStorage.getItem("user"),
 				exam: data.uuid,
 			};
+
 			axios
 				.post(
 					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
@@ -43,30 +48,57 @@ const TestPage = () => {
 				.then((response) => {
 					setId(response.data.uuid);
 					setStudent_examId(response.data);
-					console.log(response.data.uuid);
-					console.log(response.data.exam);
+					setLoading(false);
+				})
+				.catch((error) => {
+					console.error(error);
 				});
-		} else {
-			setIsMounted(true);
 		}
 	}, [data]);
 
-	return (
-		<>
-			<header>
-				<h1>{data.name}</h1>
-				<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
-			</header>
+	const fadeIn = useSpring({
+		from: { opacity: 0 },
+		to: { opacity: 1 },
+		config: { duration: 3500 },
+	});
 
-			<main>
-				<QComparisonQuestions></QComparisonQuestions>
-				<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
-				<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
-				<Link to={`/results_test/${data.uuid}`}>
-					<button className="CloseTest">Завершить тест</button>
-				</Link>
-			</main>
-		</>
+	const fadeBTN = useSpring({
+		from: { opacity: 0 },
+		to: { opacity: 1 },
+		config: { duration: 5000 },
+	});
+
+	return (
+		<div>
+			{loading ? (
+				<HeaderLoader />
+			) : (
+				<animated.div style={fadeIn}>
+					<header>
+						<h1>{data.name}</h1>
+						<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
+					</header>
+				</animated.div>
+			)}
+			{loading ? (
+				<MainLoader />
+			) : (
+				<>
+					<animated.div style={fadeIn}>
+						<main>
+							<QComparisonQuestions></QComparisonQuestions>
+							<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
+							<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
+							<animated.div style={fadeBTN}>
+								<Link to={`/results_test/${data.uuid}`}>
+									<button className="CloseTest">Завершить тест</button>
+								</Link>
+							</animated.div>
+						</main>
+					</animated.div>
+				</>
+			)}
+		</div>
 	);
 };
 

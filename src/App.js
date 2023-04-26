@@ -4,12 +4,16 @@ import TestPage from "./pages/TestPage";
 //import TestPage from "./pages/TestPage";
 import "./style/style.scss";
 
+
 function App() {
+
 	return (
 		<div className="App">
-			{/* <TestPage></TestPage> */}
-			{/* <FormPage></FormPage> */}
-			<MainPage></MainPage>
+			
+				{/* <TestPage></TestPage> */}
+				{/* <FormPage></FormPage> */}
+				<MainPage></MainPage>
+			
 		</div>
 	);
 }
