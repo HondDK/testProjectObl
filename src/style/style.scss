@@ -165,8 +165,12 @@ main {
 }
 
 .q_input_answer {
-	display: flex;
-	flex-direction: column;
+	background-color: #fff;
+	border: 0.0625rem solid #dadce0;
+	border-radius: 0.5rem;
+	overflow: hidden;
+	padding: 0 25px 25px 25px;
+	margin-top: 20px;
 	@extend %font-bold;
 	.q_input_answer_block {
 		@extend %font-base;
