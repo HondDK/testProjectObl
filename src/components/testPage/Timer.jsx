@@ -45,7 +45,7 @@ const Timer = ({ hours, minutes, seconds }) => {
 
 	return (
 		<div>
-			<span className="timer">
+			<span className="timer-span">
 				{timeLeft.hours.toString().padStart(2, "0")}:
 				{timeLeft.minutes.toString().padStart(2, "0")}:
 				{timeLeft.seconds.toString().padStart(2, "0")}

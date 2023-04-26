@@ -75,7 +75,9 @@ const TestPage = () => {
 				<animated.div style={fadeIn}>
 					<header>
 						<h1>{data.name}</h1>
-						<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
+						<div className="timer">
+							<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
+						</div>
 					</header>
 				</animated.div>
 			)}
@@ -90,7 +92,9 @@ const TestPage = () => {
 							<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
 							<animated.div style={fadeBTN}>
 								<Link to={`/results_test/${data.uuid}`}>
-									<button className="CloseTest">Завершить тест</button>
+									<button className="CloseTest">
+										<span>Завершить тест</span>
+									</button>
 								</Link>
 							</animated.div>
 						</main>
