@@ -16,19 +16,15 @@ const TestPage = () => {
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [timeToPass, setTimeToPass] = useState({
-		hours_to_pass: 1,
-		minutes_to_pass: 0,
-		seconds_to_pass: 0,
-	});
+	const [hoursToPass, setHoursToPass] = useState(0);
+	const [minutesToPass, setMinutesToPass] = useState(30);
 
 	useEffect(() => {
-		setTimeToPass({
-			hours_to_pass: data.hours_to_pass,
-			minutes_to_pass: data.minutes_to_pass,
-			seconds_to_pass: data.seconds_to_pass,
-		});
-	}, []);
+		if (data) {
+			setHoursToPass(data.hours_to_pass);
+			setMinutesToPass(data.minutes_to_pass);
+		}
+	}, [data]);
 
 	const [isMounted, setIsMounted] = useState(false);
 	const [id, setId] = useState("");
@@ -60,11 +56,7 @@ const TestPage = () => {
 		<>
 			<header>
 				<h1>{data.name}</h1>
-				<Timer
-					hours={timeToPass.hours_to_pass}
-					minutes={timeToPass.minutes_to_pass}
-					seconds={timeToPass.seconds_to_pass}
-				/>
+				<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
 			</header>
 			{/* <Nav props={data} /> */}
 			<main>
