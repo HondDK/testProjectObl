@@ -3,7 +3,6 @@ import axios from "axios";
 import Nav from "../components/testPage/Nav";
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
-import QTable from "../components/testPage/QTable";
 import useFetchData from "../hooks/useFetchData";
 import QInputAnswer from "../components/testPage/QInputAnswer";
 import QComparisonQuestions from "../components/testPage/QComparisonQuestions";
@@ -58,10 +57,9 @@ const TestPage = () => {
 				<h1>{data.name}</h1>
 				<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
 			</header>
-			{/* <Nav props={data} /> */}
+
 			<main>
 				<QComparisonQuestions></QComparisonQuestions>
-				{/* <QTable></QTable> */}
 				<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
 				<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
 				<Link to={`/results_test/${data.uuid}`}>

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import QOneAnswerButton from "../UI/QOneAnswerButton";
-import Intro from "./Intro";
 import useFetchData from "../../hooks/useFetchData";
 import axios from "axios";
 import { useParams } from "react-router-dom";
