@@ -4,15 +4,25 @@ import { Link, useParams } from "react-router-dom";
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const [user, setUser] = useState("");
+	const [isDisabled, setIsDisabled] = useState(true);
+
 	function handleChange(e) {
 		const name = e.target.value;
 		setUser(name);
-		sessionStorage.setItem("user", user);
-		console.log(user);
+		if (name.trim() === "") {
+			setIsDisabled(true);
+		} else {
+			setIsDisabled(false);
+		}
+		sessionStorage.setItem("user", name);
 	}
-
+	let value = "Начать тестирование";
 	function handleSubmit(e) {
 		e.preventDefault();
+		if (user.trim() === "") {
+			alert("Введите фамилию, имя и отчество");
+			return;
+		}
 		console.log(user);
 	}
 
@@ -23,8 +33,11 @@ const FormPage = () => {
 			</header>
 			<main>
 				<article>
-					<h1>Введите свои данные</h1>
-
+					{isDisabled ? (
+						<h1>Введите свои данные</h1>
+					) : (
+						<h1>Проверьте правильность ФИО перед началом теста</h1>
+					)}
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="POST-name">Введите фамилию, имя и отчество</label>
 						<input
@@ -38,7 +51,8 @@ const FormPage = () => {
 							<input
 								className="submit"
 								type="submit"
-								value="Начать тестирование"
+								value={value}
+								disabled={isDisabled}
 							></input>
 						</Link>
 					</form>

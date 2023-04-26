@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Nav from "../components/testPage/Nav";
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
 import useFetchData from "../hooks/useFetchData";
