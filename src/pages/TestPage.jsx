@@ -79,6 +79,7 @@ const TestPage = () => {
 						<h1>{data.name}</h1>
 						<div className="timer">
 							<Timer
+								data={data}
 								hours={hoursToPass}
 								minutes={minutesToPass}
 								seconds={secondsToPass}

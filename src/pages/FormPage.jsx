@@ -6,6 +6,10 @@ const FormPage = () => {
 	const [user, setUser] = useState("");
 	const [isDisabled, setIsDisabled] = useState(true);
 
+	useEffect(() => {
+		localStorage.clear();
+	});
+
 	function handleChange(e) {
 		const name = e.target.value;
 		setUser(name);

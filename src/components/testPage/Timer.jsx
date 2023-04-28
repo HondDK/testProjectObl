@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Timer = ({ hours, minutes, seconds }) => {
+const Timer = ({ hours, minutes, seconds, data }) => {
+	const navigate = useNavigate();
 	const [timeLeft, setTimeLeft] = useState({
 		hours: parseInt(sessionStorage.getItem("hours") || hours),
 		minutes: parseInt(sessionStorage.getItem("minutes") || minutes),
@@ -42,6 +44,14 @@ const Timer = ({ hours, minutes, seconds }) => {
 						}
 				  }, 1000)
 				: undefined;
+
+		if (
+			timeLeft.hours === 0 &&
+			timeLeft.minutes === 0 &&
+			timeLeft.seconds === 0
+		) {
+			navigate(`/results_test/${data.uuid}`, { replace: true });
+		}
 
 		return () => clearTimeout(timer);
 	}, [timeLeft]);
