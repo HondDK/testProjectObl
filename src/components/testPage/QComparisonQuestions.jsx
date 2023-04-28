@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import useFetchData from "../../hooks/useFetchData";
 import CardComparisonQuestions from "../UI/CardComparisonQuestions";
+import { useParams } from "react-router-dom";
 
 const QComparisonQuestions = () => {
+	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const data = useFetchData(
-		"http://165.232.118.51:8000/edu_exams/exams/exams/1feba260-81ca-4003-96a6-a12353c94e32/"
+		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
 	return (

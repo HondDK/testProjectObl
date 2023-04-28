@@ -19,11 +19,13 @@ const TestPage = () => {
 
 	const [hoursToPass, setHoursToPass] = useState(0);
 	const [minutesToPass, setMinutesToPass] = useState(0);
+	const [secondsToPass, setSecondsToPass] = useState(0);
 
 	useEffect(() => {
 		if (data) {
-			setHoursToPass(data.hours_to_pass);
-			setMinutesToPass(data.minutes_to_pass);
+			setHoursToPass(data.hours_to_pass || 0);
+			setMinutesToPass(data.minutes_to_pass || 0);
+			setSecondsToPass(data.seconds_to_pass || 0);
 		}
 	}, [data]);
 
@@ -76,7 +78,11 @@ const TestPage = () => {
 					<header>
 						<h1>{data.name}</h1>
 						<div className="timer">
-							<Timer hours={hoursToPass} minutes={minutesToPass} seconds={0} />
+							<Timer
+								hours={hoursToPass}
+								minutes={minutesToPass}
+								seconds={secondsToPass}
+							/>
 						</div>
 					</header>
 				</animated.div>

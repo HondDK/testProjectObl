@@ -27,5 +27,10 @@ const router = createBrowserRouter([
 	},
 ]);
 
+function handleCopy(e) {
+	e.preventDefault();
+	navigator.clipboard.writeText("...");
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router={router} />);
+root.render(<RouterProvider onCopy={handleCopy} router={router} />);

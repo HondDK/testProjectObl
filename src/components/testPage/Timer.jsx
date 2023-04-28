@@ -1,14 +1,17 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const Timer = ({ hours, minutes, seconds }) => {
 	const [timeLeft, setTimeLeft] = useState({
-		hours: parseInt(hours),
-		minutes: parseInt(minutes),
-		seconds: parseInt(seconds),
+		hours: parseInt(sessionStorage.getItem("hours") || hours),
+		minutes: parseInt(sessionStorage.getItem("minutes") || minutes),
+		seconds: parseInt(sessionStorage.getItem("seconds") || seconds),
 	});
 
 	useEffect(() => {
+		sessionStorage.setItem("hours", timeLeft.hours);
+		sessionStorage.setItem("minutes", timeLeft.minutes);
+		sessionStorage.setItem("seconds", timeLeft.seconds);
+
 		const timer =
 			timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0
 				? setTimeout(() => {
@@ -43,13 +46,15 @@ const Timer = ({ hours, minutes, seconds }) => {
 		return () => clearTimeout(timer);
 	}, [timeLeft]);
 
+	const formattedTime = timeLeft
+		? `${timeLeft.hours.toString().padStart(2, "0")}:${timeLeft.minutes
+				.toString()
+				.padStart(2, "0")}:${timeLeft.seconds.toString().padStart(2, "0")}`
+		: "";
+
 	return (
 		<div>
-			<span className="timer-span">
-				{timeLeft.hours.toString().padStart(2, "0")}:
-				{timeLeft.minutes.toString().padStart(2, "0")}:
-				{timeLeft.seconds.toString().padStart(2, "0")}
-			</span>
+			<span className="timer-span">{formattedTime}</span>
 		</div>
 	);
 };
