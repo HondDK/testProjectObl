@@ -11,6 +11,7 @@ const QOneAnswer = (props) => {
 
 	const [answerId, setAnswerId] = useState();
 	const [answer, setAnswer] = useState([]);
+	const [selectedAnswer, setSelectedAnswer] = useState([]);
 
 	const [buttonDisabled, setButtonDisabled] = useState([]);
 	function submit(index, question, text) {
@@ -29,6 +30,10 @@ const QOneAnswer = (props) => {
 			const newButtonDisabled = [...buttonDisabled];
 			newButtonDisabled[index] = true;
 			setButtonDisabled(newButtonDisabled);
+
+			const newSelectedAnswer = [...selectedAnswer];
+			newSelectedAnswer[index] = text;
+			setSelectedAnswer(newSelectedAnswer);
 		} catch (err) {
 			console.log(article);
 		}
@@ -54,6 +59,9 @@ const QOneAnswer = (props) => {
 						<div className="q_one_answer_btn">
 							{question.answers.map((answer) => (
 								<button
+									className={
+										selectedAnswer[index] === answer.text ? "selected" : ""
+									}
 									disabled={buttonDisabled[index]}
 									key={answer.uuid}
 									onClick={() => submit(index, question, answer.text)}

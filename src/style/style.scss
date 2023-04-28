@@ -19,7 +19,6 @@ input {
 }
 header {
 	width: 1440px;
-	position: sticky;
 	display: flex;
 	top: 0;
 	margin: 0 auto;
@@ -56,7 +55,7 @@ header {
 		border-radius: 0.5rem;
 		padding: 22px 25px 25px 25px;
 		overflow: hidden;
-		width: 300px;
+		width: 225px;
 		box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
 			0 2px 6px 2px rgba(60, 64, 67, 0.15);
 		height: 100px;
@@ -142,8 +141,8 @@ main {
 				transform: scale(1.02);
 				transition: transform 0.2s ease;
 			}
-			:disabled {
-				background: rgba(56, 56, 56, 0.8);
+			.selected {
+				background-color: #4254f9;
 			}
 		}
 	}
@@ -273,9 +272,24 @@ h1 {
 		padding: 20px;
 		width: 300px;
 	}
+	:hover {
+		-webkit-transform: scale(1.02);
+		-ms-ransform: scale(1.02);
+		transform: scale(1.02);
+		transition: transform 0.2s ease;
+	}
 	@extend %font-bold;
 	color: white;
 	font-size: 16px;
+}
+.header_form {
+	display: flex;
+
+	h1 {
+		margin: auto;
+		margin-top: 5%;
+		margin-bottom: 10%;
+	}
 }
 form {
 	display: flex;

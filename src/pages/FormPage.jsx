@@ -28,7 +28,7 @@ const FormPage = () => {
 
 	return (
 		<>
-			<header>
+			<header className="header_form">
 				<h1>Тестирование </h1>
 			</header>
 			<main>
