@@ -1,36 +1,4 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import FormPage from "./pages/FormPage";
 import App from "./App";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TestPage from "./pages/TestPage";
-import MainPage from "./pages/MainPage";
-import ResultsTest from "./pages/ResultsTest";
-
-const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <MainPage />,
-	},
-
-	{
-		path: "/form/:uuid",
-		element: <FormPage />,
-	},
-	{
-		path: "/test_page/:uuid",
-		element: <TestPage />,
-	},
-	{
-		path: "/results_test/:uuid",
-		element: <ResultsTest />,
-	},
-]);
-
-function handleCopy(e) {
-	e.preventDefault();
-	navigator.clipboard.writeText("...");
-}
-
+import ReactDOM from "react-dom/client";
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<RouterProvider onCopy={handleCopy} router={router} />);
+root.render(<App></App>);

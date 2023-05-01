@@ -1,33 +1,46 @@
-import FormPage from "./pages/FormPage";
 import MainPage from "./pages/MainPage";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import { createStore } from "redux";
+import React from "react";
+import { store, persistor } from "./components/redux/store/configureStore";
+
+import FormPage from "./pages/FormPage";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TestPage from "./pages/TestPage";
-import React, { useEffect } from "react";
-//import TestPage from "./pages/TestPage";
+import ResultsTest from "./pages/ResultsTest";
+
 import "./style/style.scss";
-
 function App() {
-	// function handleBeforeUnload(event) {
-	// 	event.preventDefault();
-	// 	event.returnValue = ""; // сообщение, которое будет отображаться в диалоговом окне
-	// }
+	const router = createBrowserRouter([
+		{
+			path: "/",
+			element: <MainPage />,
+		},
 
-	// useEffect(() => {
-	// 	window.addEventListener("beforeunload", handleBeforeUnload);
-	// 	return () => {
-	// 		window.removeEventListener("beforeunload", handleBeforeUnload);
-	// 	};
-	// }, []);
-	function handleCopy(e) {
-		e.preventDefault();
-		navigator.clipboard.writeText("...");
-	}
+		{
+			path: "/form/:uuid",
+			element: <FormPage />,
+		},
+		{
+			path: "/test_page/:uuid",
+			element: <TestPage />,
+		},
+		{
+			path: "/results_test/:uuid",
+			element: <ResultsTest />,
+		},
+	]);
 
+	const persistor = persistStore(store);
 	return (
-		<div className="App" onCopy={handleCopy}>
-			{/* <TestPage></TestPage> */}
-			{/* <FormPage></FormPage> */}
-			<MainPage></MainPage>
-			
+		<div className="App">
+			<Provider store={store}>
+				<PersistGate loading={null} persistor={persistor}>
+					<RouterProvider router={router} />
+				</PersistGate>
+			</Provider>
 		</div>
 	);
 }

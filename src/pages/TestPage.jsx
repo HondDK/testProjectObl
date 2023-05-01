@@ -9,25 +9,21 @@ import { Link, useParams } from "react-router-dom";
 import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
+import { useDispatch } from "react-redux";
+import {
+	setHoursToPass,
+	setMinutesToPass,
+	setSecondsToPass,
+} from "../components/redux/testPageSlice";
 
 const TestPage = () => {
-	const { uuid } = useParams(); // retrieve the UUID from the URL
+	const { uuid } = useParams();
+	const dispatch = useDispatch();
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [hoursToPass, setHoursToPass] = useState(0);
-	const [minutesToPass, setMinutesToPass] = useState(0);
-	const [secondsToPass, setSecondsToPass] = useState(0);
-
-	useEffect(() => {
-		if (data) {
-			setHoursToPass(data.hours_to_pass || 0);
-			setMinutesToPass(data.minutes_to_pass || 0);
-			setSecondsToPass(data.seconds_to_pass || 0);
-		}
-	}, [data]);
 
 	const [id, setId] = useState("");
 	const [student_examId, setStudent_examId] = useState({});
@@ -78,12 +74,7 @@ const TestPage = () => {
 					<header>
 						<h1>{data.name}</h1>
 						<div className="timer">
-							<Timer
-								data={data}
-								hours={hoursToPass}
-								minutes={minutesToPass}
-								seconds={secondsToPass}
-							/>
+							<Timer data={data} />
 						</div>
 					</header>
 				</animated.div>
