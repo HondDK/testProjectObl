@@ -4,16 +4,12 @@ import { useNavigate } from "react-router-dom";
 const Timer = ({ hours, minutes, seconds, data }) => {
 	const navigate = useNavigate();
 	const [timeLeft, setTimeLeft] = useState({
-		hours: parseInt(sessionStorage.getItem("hours") || hours),
-		minutes: parseInt(sessionStorage.getItem("minutes") || minutes),
-		seconds: parseInt(sessionStorage.getItem("seconds") || seconds),
+		hours: data?.hours ?? hours,
+		minutes: data?.minutes ?? minutes,
+		seconds: data?.seconds ?? seconds,
 	});
 
 	useEffect(() => {
-		sessionStorage.setItem("hours", timeLeft.hours);
-		sessionStorage.setItem("minutes", timeLeft.minutes);
-		sessionStorage.setItem("seconds", timeLeft.seconds);
-
 		const timer =
 			timeLeft.hours > 0 || timeLeft.minutes > 0 || timeLeft.seconds > 0
 				? setTimeout(() => {
@@ -48,7 +44,7 @@ const Timer = ({ hours, minutes, seconds, data }) => {
 		if (
 			timeLeft.hours === 0 &&
 			timeLeft.minutes === 0 &&
-			timeLeft.seconds === 0
+			timeLeft.seconds === 1
 		) {
 			navigate(`/results_test/${data.uuid}`, { replace: true });
 		}
