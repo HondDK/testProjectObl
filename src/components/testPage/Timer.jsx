@@ -1,12 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	setHoursToPass,
+	setMinutesToPass,
+	setSecondsToPass,
+} from "../redux/testPageSlice";
 
-const Timer = ({ hours, minutes, seconds, data }) => {
+const Timer = ({ data }) => {
+	useEffect(() => {
+		if (data) {
+			dispatch(setHoursToPass(data.hours_to_pass));
+			dispatch(setMinutesToPass(data.minutes_to_pass));
+			dispatch(setSecondsToPass(data.seconds_to_pass));
+		}
+	}, [data]);
+
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const hoursToPass = useSelector((state) => state.testPage.hoursToPass);
+	const minutesToPass = useSelector((state) => state.testPage.minutesToPass);
+	const secondsToPass = useSelector((state) => state.testPage.secondsToPass);
+
 	const [timeLeft, setTimeLeft] = useState({
-		hours: data?.hours ?? hours,
-		minutes: data?.minutes ?? minutes,
-		seconds: data?.seconds ?? seconds,
+		hours: hoursToPass,
+		minutes: minutesToPass,
+		seconds: secondsToPass,
 	});
 
 	useEffect(() => {
@@ -23,6 +42,7 @@ const Timer = ({ hours, minutes, seconds, data }) => {
 										minutes: 59,
 										seconds: 59,
 									});
+									dispatch(setHoursToPass(timeLeft.hours - 1));
 								}
 							} else {
 								setTimeLeft({
@@ -30,6 +50,7 @@ const Timer = ({ hours, minutes, seconds, data }) => {
 									minutes: timeLeft.minutes - 1,
 									seconds: 59,
 								});
+								dispatch(setMinutesToPass(timeLeft.minutes - 1));
 							}
 						} else {
 							setTimeLeft({
@@ -37,6 +58,7 @@ const Timer = ({ hours, minutes, seconds, data }) => {
 								minutes: timeLeft.minutes,
 								seconds: timeLeft.seconds - 1,
 							});
+							dispatch(setSecondsToPass(timeLeft.seconds - 1));
 						}
 				  }, 1000)
 				: undefined;
@@ -53,9 +75,9 @@ const Timer = ({ hours, minutes, seconds, data }) => {
 	}, [timeLeft]);
 
 	const formattedTime = timeLeft
-		? `${timeLeft.hours.toString().padStart(2, "0")}:${timeLeft.minutes
-				.toString()
-				.padStart(2, "0")}:${timeLeft.seconds.toString().padStart(2, "0")}`
+		? `${timeLeft.hours?.toString().padStart(2, "0")}:${timeLeft.minutes
+				?.toString()
+				.padStart(2, "0")}:${timeLeft.seconds?.toString().padStart(2, "0")}`
 		: "";
 
 	return (
