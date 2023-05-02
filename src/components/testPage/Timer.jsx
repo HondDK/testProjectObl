@@ -8,6 +8,12 @@ import {
 } from "../redux/testPageSlice";
 
 const Timer = ({ data }) => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const hoursToPass = useSelector((state) => state.testPage.hoursToPass);
+	const minutesToPass = useSelector((state) => state.testPage.minutesToPass);
+	const secondsToPass = useSelector((state) => state.testPage.secondsToPass);
+
 	useEffect(() => {
 		if (data) {
 			dispatch(setHoursToPass(data.hours_to_pass));
@@ -15,12 +21,6 @@ const Timer = ({ data }) => {
 			dispatch(setSecondsToPass(data.seconds_to_pass));
 		}
 	}, [data]);
-
-	const navigate = useNavigate();
-	const dispatch = useDispatch();
-	const hoursToPass = useSelector((state) => state.testPage.hoursToPass);
-	const minutesToPass = useSelector((state) => state.testPage.minutesToPass);
-	const secondsToPass = useSelector((state) => state.testPage.secondsToPass);
 
 	const [timeLeft, setTimeLeft] = useState({
 		hours: hoursToPass,

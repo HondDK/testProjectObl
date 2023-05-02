@@ -9,21 +9,14 @@ import { Link, useParams } from "react-router-dom";
 import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
-import { useDispatch } from "react-redux";
-import {
-	setHoursToPass,
-	setMinutesToPass,
-	setSecondsToPass,
-} from "../components/redux/testPageSlice";
+
 
 const TestPage = () => {
 	const { uuid } = useParams();
-	const dispatch = useDispatch();
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
-
 
 	const [id, setId] = useState("");
 	const [student_examId, setStudent_examId] = useState({});
