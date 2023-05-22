@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
 import useFetchData from "../hooks/useFetchData";
@@ -9,7 +9,7 @@ import { Link, useParams } from "react-router-dom";
 import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
-
+import { useDispatch, useSelector } from "react-redux";
 const TestPage = () => {
 	const { uuid } = useParams();
 
@@ -17,33 +17,9 @@ const TestPage = () => {
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [id, setId] = useState("");
-	const [student_examId, setStudent_examId] = useState({});
-	const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		let isMounted = true;
-		if (isMounted && data) {
-			const article = {
-				user_name: sessionStorage.getItem("user"),
-				exam: data.uuid,
-			};
-
-			axios
-				.post(
-					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
-					article
-				)
-				.then((response) => {
-					setId(response.data.uuid);
-					setStudent_examId(response.data);
-					setLoading(false);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-		}
-	}, [data]);
+	const { id, student_examId } = useSelector((state) => state.formPage);
 
 	const fadeIn = useSpring({
 		from: { opacity: 0 },
@@ -56,7 +32,7 @@ const TestPage = () => {
 		to: { opacity: 1 },
 		config: { duration: 5000 },
 	});
-
+	console.log(student_examId);
 	return (
 		<div>
 			{loading ? (
