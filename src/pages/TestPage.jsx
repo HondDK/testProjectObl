@@ -65,7 +65,11 @@ const TestPage = () => {
 				<animated.div style={fadeIn}>
 					<header>
 						<h1>{data.name}</h1>
-						<div className="timer">{/* <Timer data={data} /> */}</div>
+						<div className="timer">
+							<div className="timer">
+								{data && /\d/.test(data.hours_to_pass) && <Timer data={data} />}
+							</div>
+						</div>
 					</header>
 				</animated.div>
 			)}
