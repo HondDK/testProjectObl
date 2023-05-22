@@ -10,7 +10,6 @@ import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
 
-
 const TestPage = () => {
 	const { uuid } = useParams();
 
@@ -66,9 +65,7 @@ const TestPage = () => {
 				<animated.div style={fadeIn}>
 					<header>
 						<h1>{data.name}</h1>
-						<div className="timer">
-							<Timer data={data} />
-						</div>
+						<div className="timer">{/* <Timer data={data} /> */}</div>
 					</header>
 				</animated.div>
 			)}
