@@ -11,9 +11,15 @@ import {
 
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
+	const dispatch = useDispatch();
+	
 	const [user, setUser] = useState("");
 	const [isDisabled, setIsDisabled] = useState(true);
-	const dispatch = useDispatch();
+	
+
+	const data = useFetchData(
+		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
+	);
 
 	useEffect(() => {
 		localStorage.clear();
@@ -27,7 +33,6 @@ const FormPage = () => {
 		} else {
 			setIsDisabled(false);
 		}
-		sessionStorage.setItem("user", name);
 	}
 
 	function handleSubmit(e) {
@@ -38,9 +43,6 @@ const FormPage = () => {
 		}
 		console.log(user);
 	}
-	const data = useFetchData(
-		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
-	);
 
 	function startTest() {
 		const article = {
