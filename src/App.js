@@ -1,47 +1,32 @@
 import MainPage from "./pages/MainPage";
-import { Provider } from "react-redux";
-import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
-import { createStore } from "redux";
 import React from "react";
-import { store, persistor } from "./components/redux/store/configureStore";
-
 import FormPage from "./pages/FormPage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TestPage from "./pages/TestPage";
 import ResultsTest from "./pages/ResultsTest";
 
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import { store } from "../src/components/redux/store/store";
 import "./style/style.scss";
+
 function App() {
-	const router = createBrowserRouter([
-		{
-			path: "/",
-			element: <MainPage />,
-		},
-
-		{
-			path: "/form/:uuid",
-			element: <FormPage />,
-		},
-		{
-			path: "/test_page/:uuid",
-			element: <TestPage />,
-		},
-		{
-			path: "/results_test/:uuid",
-			element: <ResultsTest />,
-		},
-	]);
-
 	const persistor = persistStore(store);
+
 	return (
-		<div className="App">
-			<Provider store={store}>
-				<PersistGate loading={null} persistor={persistor}>
-					<RouterProvider router={router} />
-				</PersistGate>
-			</Provider>
-		</div>
+		<Provider store={store}>
+			<PersistGate loading={null} persistor={persistor}>
+				<Router>
+					<Routes>
+						<Route path="/" element={<MainPage />} />
+						<Route path="/form/:uuid" element={<FormPage />} />
+						<Route path="/test_page/:uuid" element={<TestPage />} />
+						<Route path="/results_test/:uuid" element={<ResultsTest />} />
+					</Routes>
+				</Router>
+			</PersistGate>
+		</Provider>
 	);
 }
 

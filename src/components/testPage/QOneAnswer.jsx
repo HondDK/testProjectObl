@@ -2,6 +2,13 @@ import React, { useEffect, useState } from "react";
 import useFetchData from "../../hooks/useFetchData";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+	setAnswerId,
+	setButtonDisabled,
+	setSelectedAnswer,
+} from "../redux/redusers/qOneAnswerReducer";
+
 const QOneAnswer = (props) => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 
@@ -9,11 +16,10 @@ const QOneAnswer = (props) => {
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [answerId, setAnswerId] = useState();
-	const [answer, setAnswer] = useState([]);
-	const [selectedAnswer, setSelectedAnswer] = useState([]);
-
-	const [buttonDisabled, setButtonDisabled] = useState([]);
+	const dispatch = useDispatch();
+	const { answerId, answer, selectedAnswer, buttonDisabled } = useSelector(
+		(state) => state.qOneAnswer
+	);
 	function submit(index, question, text) {
 		const article = {
 			student_exam: props.exam,
@@ -26,14 +32,15 @@ const QOneAnswer = (props) => {
 					"http://165.232.118.51:8000/edu_exams/exams/ordinary_question_user_answers/",
 					article
 				)
-				.then((response) => setAnswerId(response.data.id));
+				.then((response) => dispatch(setAnswerId(response.data.id)));
+
 			const newButtonDisabled = [...buttonDisabled];
 			newButtonDisabled[index] = true;
-			setButtonDisabled(newButtonDisabled);
+			dispatch(setButtonDisabled(newButtonDisabled));
 
 			const newSelectedAnswer = [...selectedAnswer];
 			newSelectedAnswer[index] = text;
-			setSelectedAnswer(newSelectedAnswer);
+			dispatch(setSelectedAnswer(newSelectedAnswer));
 		} catch (err) {
 			console.log(article);
 		}
