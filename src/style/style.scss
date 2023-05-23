@@ -11,6 +11,11 @@
 input::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 }
+body {
+	background: url("../../public/blob-scene-haikei.svg");
+	background-size: cover;
+	background-repeat: repeat-x;
+}
 
 input {
 	border-top-style: hidden;
@@ -189,7 +194,7 @@ main {
 		input {
 			@extend %font-bold;
 			text-align: center;
-			background: rgba(89, 173, 103, 0.5);
+			background: #59ad6780;
 			border-radius: 8px;
 			height: 100px;
 			width: 300px;
