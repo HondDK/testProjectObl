@@ -10,6 +10,7 @@ import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
+
 const TestPage = () => {
 	const { uuid } = useParams();
 
@@ -17,7 +18,7 @@ const TestPage = () => {
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const { id, student_examId } = useSelector((state) => state.formPage);
 
@@ -32,11 +33,17 @@ const TestPage = () => {
 		to: { opacity: 1 },
 		config: { duration: 5000 },
 	});
-	console.log(student_examId);
+
+	useEffect(() => {
+		if (data) {
+			setLoading(false);
+		}
+	}, [data]);
+
 	return (
 		<div>
 			{loading ? (
-				<HeaderLoader />
+				<div className="custom-loader"></div>
 			) : (
 				<animated.div style={fadeIn}>
 					<header>
