@@ -2,16 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useFetchData from "../../hooks/useFetchData";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+	setAnswerId,
+	setAnswer,
+	setButtonDisabled,
+} from "../redux/redusers/qInputAnswerReduser";
+
 const QInputAnswer = (props) => {
-	const [answerId, setAnswerId] = useState();
-	const [answer, setAnswer] = useState([]);
+	const dispatch = useDispatch();
+
+	const { answerId, answer, buttonDisabled } = useSelector(
+		(state) => state.qInputAnswer
+	);
+
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [buttonDisabled, setButtonDisabled] = useState([]);
 	function submit(index, question) {
 		const article = {
 			student_exam: props.exam,
@@ -24,10 +35,10 @@ const QInputAnswer = (props) => {
 				article
 			)
 			.then((response) => {
-				setAnswerId(response.data.id);
+				dispatch(setAnswerId(response.data.id));
 				const newButtonDisabled = [...buttonDisabled];
 				newButtonDisabled[index] = true;
-				setButtonDisabled(newButtonDisabled);
+				dispatch(setButtonDisabled(newButtonDisabled));
 			})
 			.catch((error) => {
 				console.log(error);
@@ -44,7 +55,10 @@ const QInputAnswer = (props) => {
 						<p>{item.header}</p>
 						<span className="description">{item.description}</span>
 						<div className="q_input_answer_block">
-							<input onChange={(e) => setAnswer(e.target.value)} />
+							<input
+								onChange={(e) => dispatch(setAnswer(e.target.value))}
+								value={answer[answerId]}
+							/>
 							<button
 								disabled={buttonDisabled[index]}
 								onClick={() => submit(index, item)}

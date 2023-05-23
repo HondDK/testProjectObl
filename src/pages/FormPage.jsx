@@ -12,10 +12,9 @@ import {
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const dispatch = useDispatch();
-	
+
 	const [user, setUser] = useState("");
 	const [isDisabled, setIsDisabled] = useState(true);
-	
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
