@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useFetchData from "../../hooks/useFetchData";
+import shuffleAnswers from "../../func/shuffleAnswers";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +11,7 @@ import {
 } from "../redux/redusers/qOneAnswerReducer";
 
 const QOneAnswer = (props) => {
-	const { uuid } = useParams(); 
+	const { uuid } = useParams();
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
@@ -46,15 +47,6 @@ const QOneAnswer = (props) => {
 		}
 		console.log(article);
 	}
-
-	
-	const shuffleAnswers = (answers) => {
-		for (let i = answers.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[answers[i], answers[j]] = [answers[j], answers[i]];
-		}
-		return answers;
-	};
 
 	return (
 		<>
