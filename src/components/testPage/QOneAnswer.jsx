@@ -10,7 +10,7 @@ import {
 } from "../redux/redusers/qOneAnswerReducer";
 
 const QOneAnswer = (props) => {
-	const { uuid } = useParams(); // retrieve the UUID from the URL
+	const { uuid } = useParams(); 
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
@@ -47,7 +47,7 @@ const QOneAnswer = (props) => {
 		console.log(article);
 	}
 
-	// Shuffle the answers array
+	
 	const shuffleAnswers = (answers) => {
 		for (let i = answers.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
