@@ -24,6 +24,7 @@ const QInputBetweenAnswer = (props) => {
 	);
 
 	function submit(index, question) {
+		console.log(question.uuid);
 		const article = {
 			student_exam: props.exam,
 			question: question.uuid,
@@ -70,7 +71,7 @@ const QInputBetweenAnswer = (props) => {
 										Готово
 									</button>
 								</>
-							))} 
+							))}
 						</div>
 					</section>
 				))}
