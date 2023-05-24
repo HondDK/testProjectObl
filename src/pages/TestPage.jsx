@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import Timer from "../components/testPage/Timer";
 import QOneAnswer from "../components/testPage/QOneAnswer";
 import useFetchData from "../hooks/useFetchData";
@@ -9,6 +9,8 @@ import { Link, useParams } from "react-router-dom";
 import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
+import { useDispatch, useSelector } from "react-redux";
+import QInputBetweenAnswer from "../components/testPage/QInputBetweenAnswer";
 
 const TestPage = () => {
 	const { uuid } = useParams();
@@ -17,33 +19,9 @@ const TestPage = () => {
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
 
-	const [id, setId] = useState("");
-	const [student_examId, setStudent_examId] = useState({});
 	const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
-		let isMounted = true;
-		if (isMounted && data) {
-			const article = {
-				user_name: sessionStorage.getItem("user"),
-				exam: data.uuid,
-			};
-
-			axios
-				.post(
-					"http://165.232.118.51:8000/edu_exams/exams/student_exams/",
-					article
-				)
-				.then((response) => {
-					setId(response.data.uuid);
-					setStudent_examId(response.data);
-					setLoading(false);
-				})
-				.catch((error) => {
-					console.error(error);
-				});
-		}
-	}, [data]);
+	const { id, student_examId } = useSelector((state) => state.formPage);
 
 	const fadeIn = useSpring({
 		from: { opacity: 0 },
@@ -57,15 +35,25 @@ const TestPage = () => {
 		config: { duration: 5000 },
 	});
 
+	useEffect(() => {
+		if (data) {
+			setLoading(false);
+		}
+	}, [data]);
+
 	return (
 		<div>
 			{loading ? (
-				<HeaderLoader />
+				<div className="custom-loader"></div>
 			) : (
 				<animated.div style={fadeIn}>
 					<header>
 						<h1>{data.name}</h1>
-						<div className="timer">{/* <Timer data={data} /> */}</div>
+						<div className="timer">
+							<div className="timer">
+								{data && /\d/.test(data.hours_to_pass) && <Timer data={data} />}
+							</div>
+						</div>
 					</header>
 				</animated.div>
 			)}
@@ -78,6 +66,9 @@ const TestPage = () => {
 							<QComparisonQuestions></QComparisonQuestions>
 							<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
 							<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
+							<QInputBetweenAnswer
+								exam={student_examId.uuid}
+							></QInputBetweenAnswer>
 							<animated.div style={fadeBTN}>
 								<Link to={`/results_test/${data.uuid}`}>
 									<button className="CloseTest">

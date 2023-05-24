@@ -10,7 +10,7 @@ import {
 	setButtonDisabled,
 } from "../redux/redusers/qInputAnswerReduser";
 
-const QInputAnswer = (props) => {
+const QInputBetweenAnswer = (props) => {
 	const dispatch = useDispatch();
 
 	const { answerId, answer, buttonDisabled } = useSelector(
@@ -31,7 +31,7 @@ const QInputAnswer = (props) => {
 		};
 		axios
 			.post(
-				"http://165.232.118.51:8000/edu_exams/exams/original_question_user_answers/",
+				"http://165.232.118.51:8000/edu_exams/exams/original_question_between_user_answers/",
 				article
 			)
 			.then((response) => {
@@ -49,22 +49,28 @@ const QInputAnswer = (props) => {
 	return (
 		<>
 			{data &&
-				data.original_questions &&
-				data.original_questions.map((item, index) => (
+				data.original_between_questions &&
+				data.original_between_questions.map((item, index) => (
 					<section className="q_input_answer">
 						<p>{item.header}</p>
 						<span className="description">{item.description}</span>
-						<div className="q_input_answer_block">
-							<input
-								onChange={(e) => dispatch(setAnswer(e.target.value))}
-								value={answer[answerId]}
-							/>
-							<button
-								disabled={buttonDisabled[index]}
-								onClick={() => submit(index, item)}
-							>
-								Готово
-							</button>
+						<div className="q_between_input_answer_block">
+							{item.items.map((items) => (
+								<>
+									<span className="text">{items.text}</span>
+									<input
+										onChange={(e) => dispatch(setAnswer(e.target.value))}
+										value={answer[answerId]}
+									/>
+									<span className="text">{items.text}</span>
+									<button
+										disabled={buttonDisabled[index]}
+										onClick={() => submit(index, item)}
+									>
+										Готово
+									</button>
+								</>
+							))} 
 						</div>
 					</section>
 				))}
@@ -72,4 +78,4 @@ const QInputAnswer = (props) => {
 	);
 };
 
-export default QInputAnswer;
+export default QInputBetweenAnswer;
