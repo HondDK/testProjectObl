@@ -47,38 +47,50 @@ const QOneAnswer = (props) => {
 		console.log(article);
 	}
 
+	// Shuffle the answers array
+	const shuffleAnswers = (answers) => {
+		for (let i = answers.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[answers[i], answers[j]] = [answers[j], answers[i]];
+		}
+		return answers;
+	};
+
 	return (
 		<>
-			<article>{/* <Intro></Intro> */}</article>
 			{data &&
 				data.ordinary_questions &&
 				data.ordinary_questions.length > 0 &&
-				data.ordinary_questions.map((question, index) => (
-					<section className="q_one_answer" key={question.uuid}>
-						<p>{question.header}</p>
-						<p className="QOneAnswerDescription">{question.description}</p>
-						{question.files.map((file) => (
-							<img
-								src={"http://165.232.118.51:8000/edu_exams/" + file.file}
-								alt=""
-							/>
-						))}
-						<div className="q_one_answer_btn">
-							{question.answers.map((answer) => (
-								<button
-									className={
-										selectedAnswer[index] === answer.text ? "selected" : ""
-									}
-									disabled={buttonDisabled[index]}
-									key={answer.uuid}
-									onClick={() => submit(index, question, answer.text)}
-								>
-									<span>{answer.text}</span>
-								</button>
+				data.ordinary_questions.map((question, index) => {
+					const shuffledAnswers = shuffleAnswers([...question.answers]);
+					return (
+						<section className="q_one_answer" key={question.uuid}>
+							<p>{question.header}</p>
+							<p className="QOneAnswerDescription">{question.description}</p>
+							{question.files.map((file) => (
+								<img
+									src={"http://165.232.118.51:8000/edu_exams/" + file.file}
+									alt=""
+									key={file.uuid}
+								/>
 							))}
-						</div>
-					</section>
-				))}
+							<div className="q_one_answer_btn">
+								{shuffledAnswers.map((answer) => (
+									<button
+										className={
+											selectedAnswer[index] === answer.text ? "selected" : ""
+										}
+										disabled={buttonDisabled[index]}
+										key={answer.uuid}
+										onClick={() => submit(index, question, answer.text)}
+									>
+										<span>{answer.text}</span>
+									</button>
+								))}
+							</div>
+						</section>
+					);
+				})}
 		</>
 	);
 };

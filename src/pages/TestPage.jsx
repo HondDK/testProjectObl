@@ -63,7 +63,9 @@ const TestPage = () => {
 				<>
 					<animated.div style={fadeIn}>
 						<main>
-							<QComparisonQuestions></QComparisonQuestions>
+							<QComparisonQuestions
+								exam={student_examId.uuid}
+							></QComparisonQuestions>
 							<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
 							<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
 							<QInputBetweenAnswer
