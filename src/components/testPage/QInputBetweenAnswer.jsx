@@ -55,17 +55,22 @@ const QInputBetweenAnswer = (props) => {
 						<p>{item.header}</p>
 						<span className="description">{item.description}</span>
 						<div className="q_between_input_answer_block">
-							<input
-								onChange={(e) => dispatch(setAnswer(e.target.value))}
-								value={answer[answerId]}
-							/>
-							<span className="description">{item.description}</span>
-							<button
-								disabled={buttonDisabled[index]}
-								onClick={() => submit(index, item)}
-							>
-								Готово
-							</button>
+							{item.items.map((items) => (
+								<>
+									<span className="text">{items.text}</span>
+									<input
+										onChange={(e) => dispatch(setAnswer(e.target.value))}
+										value={answer[answerId]}
+									/>
+									<span className="text">{items.text}</span>
+									<button
+										disabled={buttonDisabled[index]}
+										onClick={() => submit(index, item)}
+									>
+										Готово
+									</button>
+								</>
+							))} 
 						</div>
 					</section>
 				))}
