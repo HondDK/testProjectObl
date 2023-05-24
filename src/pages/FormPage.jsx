@@ -22,7 +22,7 @@ const FormPage = () => {
 
 	useEffect(() => {
 		localStorage.clear();
-	});
+	}, []);
 
 	function handleChange(e) {
 		const name = e.target.value;

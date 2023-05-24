@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import useFetchData from "../hooks/useFetchData";
 import { Link } from "react-router-dom";
 const MainPage = () => {
 	const data = useFetchData(
 		"http://165.232.118.51:8000/edu_exams/exams/exams/"
 	);
-
+	useEffect(() => {
+		localStorage.clear();
+	}, []);
 	return (
 		<div>
 			<h1>Все созданные тесты {data.count}</h1>

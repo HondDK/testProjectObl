@@ -10,6 +10,7 @@ import HeaderLoader from "../components/UI/loaders/HeaderLoader";
 import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
+import QInputBetweenAnswer from "../components/testPage/QInputBetweenAnswer";
 
 const TestPage = () => {
 	const { uuid } = useParams();
@@ -65,6 +66,9 @@ const TestPage = () => {
 							<QComparisonQuestions></QComparisonQuestions>
 							<QOneAnswer exam={student_examId.uuid}></QOneAnswer>
 							<QInputAnswer exam={student_examId.uuid}></QInputAnswer>
+							<QInputBetweenAnswer
+								exam={student_examId.uuid}
+							></QInputBetweenAnswer>
 							<animated.div style={fadeBTN}>
 								<Link to={`/results_test/${data.uuid}`}>
 									<button className="CloseTest">
