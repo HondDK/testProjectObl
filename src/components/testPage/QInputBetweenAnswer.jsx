@@ -63,7 +63,7 @@ const QInputBetweenAnswer = (props) => {
 										onChange={(e) => dispatch(setAnswer(e.target.value))}
 										value={answer[answerId]}
 									/>
-									<span className="text">{items.text}</span>
+									<span className="text">{items.text_end}</span>
 									<button
 										disabled={buttonDisabled[index]}
 										onClick={() => submit(index, item)}
