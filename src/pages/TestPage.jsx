@@ -11,9 +11,11 @@ import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import QInputBetweenAnswer from "../components/testPage/QInputBetweenAnswer";
+import { setStudent_examId } from "../components/redux/redusers/testPageReduser";
 
 const TestPage = () => {
 	const { uuid } = useParams();
+	const dispatch = useDispatch();
 
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
@@ -40,7 +42,7 @@ const TestPage = () => {
 			setLoading(false);
 		}
 	}, [data]);
-
+	dispatch(setStudent_examId(data.name));
 	return (
 		<div>
 			{loading ? (
@@ -72,7 +74,7 @@ const TestPage = () => {
 								exam={student_examId.uuid}
 							></QInputBetweenAnswer>
 							<animated.div style={fadeBTN}>
-								<Link to={`/results_test/${data.uuid}`}>
+								<Link to={`/results_test/${data.uuid}`} replace={true}>
 									<button className="CloseTest">
 										<span>Завершить тест</span>
 									</button>
