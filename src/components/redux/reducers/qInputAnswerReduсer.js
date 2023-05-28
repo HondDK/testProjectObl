@@ -8,7 +8,7 @@ const SET_ANSWER_ID = "SET_ANSWER_ID";
 const SET_ANSWER = "SET_ANSWER";
 const BUTTON_DISABLED = "BUTTON_DISABLED";
 
-const qInputAnswerReduser = (state = initialState, action) => {
+const QInputAnswerReduсer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_ANSWER_ID:
 			return {
@@ -45,4 +45,4 @@ export const setButtonDisabled = (buttonDisabled) => ({
 	payload: buttonDisabled,
 });
 
-export default qInputAnswerReduser;
+export default QInputAnswerReduсer;

@@ -8,7 +8,7 @@ import {
 	setAnswerId,
 	setAnswer,
 	setButtonDisabled,
-} from "../redux/redusers/qInputAnswerReduser";
+} from "../redux/reducers/qInputAnswerReduсer";
 
 const QInputBetweenAnswer = (props) => {
 	const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const QInputBetweenAnswer = (props) => {
 	);
 
 	function submit(index, question) {
+		console.log(question.uuid);
 		const article = {
 			student_exam: props.exam,
 			question: question.uuid,
@@ -62,7 +63,7 @@ const QInputBetweenAnswer = (props) => {
 										onChange={(e) => dispatch(setAnswer(e.target.value))}
 										value={answer[answerId]}
 									/>
-									<span className="text">{items.text}</span>
+									<span className="text">{items.text_end}</span>
 									<button
 										disabled={buttonDisabled[index]}
 										onClick={() => submit(index, item)}
@@ -70,7 +71,7 @@ const QInputBetweenAnswer = (props) => {
 										Готово
 									</button>
 								</>
-							))} 
+							))}
 						</div>
 					</section>
 				))}

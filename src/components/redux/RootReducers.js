@@ -1,14 +1,16 @@
 import { combineReducers } from "redux";
-import qOneAnswerReducer from "./redusers/qOneAnswerReducer";
-import timeReducer from "./redusers/timeReduser";
-import formPageReduser from "./redusers/formPageReduser";
-import qInputAnswerReduser from "./redusers/qInputAnswerReduser";
+import qOneAnswerReducer from "./reducers/qOneAnswerReducer";
+import timeReducer from "./reducers/timeReduсer";
+import formPageReducer from "./reducers/formPageReduсer";
+import QInputAnswerReducer from "./reducers/qInputAnswerReduсer";
+import testPageReducer from "./reducers/testPageReduсer";
 
 const rootReducer = combineReducers({
 	qOneAnswer: qOneAnswerReducer,
 	time: timeReducer,
-	formPage: formPageReduser,
-	qInputAnswer: qInputAnswerReduser,
+	formPage: formPageReducer,
+	qInputAnswer: QInputAnswerReducer,
+	testPage: testPageReducer,
 });
 
 export default rootReducer;

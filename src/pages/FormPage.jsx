@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import axios from "axios";
 import useFetchData from "../hooks/useFetchData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
 	setStudent_examId,
 	setId,
-} from "../components/redux/redusers/formPageReduser";
+	setUser,
+} from "../components/redux/reducers/formPageReduсer";
 
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL
 	const dispatch = useDispatch();
 
-	const [user, setUser] = useState("");
 	const [isDisabled, setIsDisabled] = useState(true);
-
+	const { user } = useSelector((state) => state.formPage);
 	const data = useFetchData(
 		`http://165.232.118.51:8000/edu_exams/exams/exams/${uuid}`
 	);
@@ -26,7 +26,7 @@ const FormPage = () => {
 
 	function handleChange(e) {
 		const name = e.target.value;
-		setUser(name);
+		dispatch(setUser(name));
 		if (name.trim() === "") {
 			setIsDisabled(true);
 		} else {
@@ -67,12 +67,11 @@ const FormPage = () => {
 	return (
 		<>
 			<header className="header_form">
-				<h1>Тестирование </h1>
+				<h1>Заполните поле перед началом тестирования</h1>
 			</header>
-			<main>
-				<article>
-					<h1>Заполните поле перед началом тестирования</h1>
 
+			<main className="form_page">
+				<article>
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="POST-name">Введите фамилию, имя и отчество</label>
 						<input
