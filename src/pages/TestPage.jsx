@@ -11,7 +11,7 @@ import MainLoader from "../components/UI/loaders/MainLoader";
 import { useSpring, animated } from "react-spring";
 import { useDispatch, useSelector } from "react-redux";
 import QInputBetweenAnswer from "../components/testPage/QInputBetweenAnswer";
-import { setStudent_examId } from "../components/redux/redusers/testPageReduser";
+import { setStudent_examId } from "../components/redux/reducers/testPageReduсer";
 
 const TestPage = () => {
 	const { uuid } = useParams();

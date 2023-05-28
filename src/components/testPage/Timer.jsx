@@ -6,7 +6,7 @@ import {
 	setMinutesToPass,
 	setSecondsToPass,
 	setInitialDataLoaded,
-} from "../redux/redusers/timeReduser";
+} from "../redux/reducers/timeReduсer";
 
 const Timer = ({ data }) => {
 	const navigate = useNavigate();

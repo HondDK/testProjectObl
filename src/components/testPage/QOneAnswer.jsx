@@ -7,7 +7,7 @@ import {
 	setAnswerId,
 	setButtonDisabled,
 	setSelectedAnswer,
-} from "../redux/redusers/qOneAnswerReducer";
+} from "../redux/reducers/qOneAnswerReducer";
 
 const QOneAnswer = (props) => {
 	const { uuid } = useParams();

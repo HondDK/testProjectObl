@@ -8,7 +8,7 @@ const SET_STUDENT_EXAM_ID = "SET_STUDENT_EXAM_ID";
 const SET_ID = "SET_ID";
 const SET_USER = "SET_USER";
 
-const formPageReduser = (state = initialState, action) => {
+const formPageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_STUDENT_EXAM_ID:
 			return {
@@ -43,4 +43,4 @@ export const setUser = (user) => ({
 	type: SET_USER,
 	payload: user,
 });
-export default formPageReduser;
+export default formPageReducer;

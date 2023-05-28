@@ -8,7 +8,7 @@ import {
 	setStudent_examId,
 	setId,
 	setUser,
-} from "../components/redux/redusers/formPageReduser";
+} from "../components/redux/reducers/formPageReduсer";
 
 const FormPage = () => {
 	const { uuid } = useParams(); // retrieve the UUID from the URL

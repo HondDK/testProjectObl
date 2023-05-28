@@ -4,7 +4,7 @@ const initialState = {
 
 const SET_EX_NAME = "SET_EX_NAME";
 
-const testPageReduser = (state = initialState, action) => {
+const testPageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_EX_NAME:
 			return {
@@ -22,4 +22,4 @@ export const setStudent_examId = (ex_name) => ({
 	payload: ex_name,
 });
 
-export default testPageReduser;
+export default testPageReducer;

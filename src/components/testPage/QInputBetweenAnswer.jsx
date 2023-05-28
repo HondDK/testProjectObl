@@ -8,7 +8,7 @@ import {
 	setAnswerId,
 	setAnswer,
 	setButtonDisabled,
-} from "../redux/redusers/qInputAnswerReduser";
+} from "../redux/reducers/qInputAnswerReduсer";
 
 const QInputBetweenAnswer = (props) => {
 	const dispatch = useDispatch();
